@@ -1,0 +1,16 @@
+{% extends 'blog/../blog/base.html' %}
+
+{% block content %}
+
+    <form method="POST" style="text-align: center">
+    <h2>Toplam staj sürenizi giriniz:</h2>
+    <br>
+    <br>
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <button style="color: #9C1A1C; font-weight: bold" type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+
+{% endblock %}

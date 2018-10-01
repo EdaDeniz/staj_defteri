@@ -1,0 +1,23 @@
+{% extends 'blog/../blog/base.html' %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% block content %}
+    <div class="alert alert-danger" role="alert">
+        Formu doldurmadan önce staj sürenizi sisteme girdiğinizden emin olun. <a href="{% url 'internship' %}"
+                                                                                 class="alert-link">Staj sürenizi
+        buradan girebilirsiniz.</a>.
+
+    </div>
+
+    <form method="POST" style="margin-left: 200px">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <button style="color: #9C1A1C; font-weight: bold" type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+
+{% endblock %}
