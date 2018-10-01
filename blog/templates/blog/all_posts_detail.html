@@ -1,0 +1,74 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+    {% if post.published_date %}
+        <div style="text-align: right" class="date">
+
+            {{ post.published_date }}
+
+        </div>
+    {% endif %}
+
+    <div class="post" name="crsf">
+
+
+        <h1 class="name">{{ post.title }}</h1>
+        <br>
+        <p class="name">{{ post.text|safe|linebreaksbr }}</p>
+
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div id="comment">
+        <h2>Yorum Ekle:</h2>
+
+        <form method="POST" style="width: 50%; margin-left: 20px" id="comment_form">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-info" value="Yorum Ekle" style="margin-left: 20px">
+        </form>
+
+        <hr>
+
+    </div>
+    <div id="mew-comments">
+        {% for comment in comments %}
+            <div>
+                <h4>{{ comment.name }} |
+                    <small>{{ comment.created_date|timesince }} önce</small>
+                </h4>
+                <p>{{ comment.content|linebreaks }}</p>
+
+            </div>
+        {% endfor %}
+    </div>
+<script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#comment").submit(function (e) {
+            e.preventDefault();
+            var url = "/detail";
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: $("#comment_form").serializeArray(),
+                success: function (data) {
+                    console.log('SUCCESS', data);
+
+                    var comment = "<div>" + "<h3>" + data['name'] + "|   </h3> " + "<h3>" + "<h4>" + data.content + "</h4>" + "</div>";
+                    $('#mew-comments').append(comment);
+
+                    console.log("comment", comment);
+
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

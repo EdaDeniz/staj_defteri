@@ -1,0 +1,155 @@
+body {
+    background: #000000 url("images/background.gif") no-repeat;
+    background-size: cover;
+    position: center;
+}
+
+h2 {
+    color: #948189;
+    text-align: center;
+}
+
+.signup_form {
+    text-align: center;
+}
+
+.tip {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* tooltip content */
+
+.tooltip h2 {
+    white-space: nowrap;
+}
+
+/* demo styles */
+
+.container {
+    padding-top: 150px;
+}
+
+.append {
+    margin-left: 1em;
+}
+
+li {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.tooltip {
+    position: relative;
+    background: #cabccd;
+    padding: 5px 12px;
+    margin: 5px;
+    font-size: 15px;
+    border-radius: 100%;
+    color: #5a134b;
+}
+
+.tooltip:before,
+.tooltip:after {
+    position: absolute;
+    content: '';
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.tooltip:before {
+    border-width: 10px 8px 0 8px;
+    border-style: solid;
+    border-color: #070807 transparent transparent transparent;
+    top: -15px;
+    transform: translateY(20px);
+}
+
+.tooltip:after {
+    content: attr(data-tooltip);
+    background: #d8d8d8;
+    width: 160px;
+    height: 40px;
+    font-size: 11px;
+    font-weight: 300;
+    top: -75px;
+    left: -10px;
+    padding: 10px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    transform: translateY(20px);
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(2deg);
+    }
+    50% {
+        transform: rotate(-3deg);
+    }
+    70% {
+        transform: rotate(3deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+#anim:hover {
+    animation: shake 500ms ease-in-out forwards;
+}
+
+/*Button*/
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#wrapper {
+    width: 150%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+section button {
+    margin: auto;
+    font-family: Garuda;
+    font-size: medium;
+
+    padding: 0rem;
+    display: block;
+    background-color: #830d00;
+    border: 2px solid transparent;
+    color: #ffffff;
+    font-weight: 200;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    top: -10px;
+    left: 5px;
+    width: 400px;
+
+}
+
+section button:hover {
+    background-color: #ffffff;
+    color: #830d00;
+    border-color: #93c9b9;
+}

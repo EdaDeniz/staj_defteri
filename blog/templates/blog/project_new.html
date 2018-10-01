@@ -1,0 +1,42 @@
+{% extends 'blog/../blog/base.html' %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% block content %}
+
+
+    <title>Proje Detayları</title>
+    <body>
+
+    <h1 style="font-size: xx-large; color: #447e9b; text-align: center">Proje Detayları Ekle</h1>
+    <br>
+    <form method="POST" style="margin-left: 200px">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        {{ form.media }}
+
+        <button style="color: #9C1A1C; font-weight: bold" type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }} {{ field.label }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }} {{ field.label }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    </body>
+{% endblock %}
+
+</html>

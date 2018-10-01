@@ -1,0 +1,41 @@
+{% extends 'blog/../blog/base.html' %}
+
+{% block content %}
+    <h1 style="font-weight: bold; color: #853e73; text-align: center">Rapor Girişi</h1>
+    <br>
+    {##}
+    {#    <form style="text-align: center" method="POST" class="post-form"><input type='hidden' name='csrfmiddlewaretoken'#}
+    {#                                                                            value='CsLvFkcUX1szaRRxQE4UAqNSjgutVJpqvUGRistmcp9ygOUa3oLJ2KDmwq0OcGrV'/>#}
+    {#        {% csrf_token %} <p><label style="font-weight: bold; text-align: left;  border: 2px solid " for="id_title">Başlık:</label>#}
+    {#            {{ form.title }}#}
+    {##}
+    {#        <br>#}
+    {#        <p><label for="id_text" style="font-weight: bold; border: 2px solid">İçerik Giriniz:</label>#}
+    {#        <div class="django-ckeditor-widget" data-field-id="id_text" style="display: inline-block;">#}
+    {#            <br>#}
+    {#            <textarea style="margin: auto" cols="40" id="id_text_1" name="text" rows="10" required data-processed="0"#}
+    {#                      data-config="{&quot;filebrowserWindowWidth&quot;: 940, &quot;toolbar_Basic&quot;: [[&quot;Source&quot;, &quot;-&quot;, &quot;Bold&quot;, &quot;Italic&quot;]], &quot;language&quot;: &quot;en-us&quot;, &quot;toolbar_Full&quot;: [[&quot;Styles&quot;, &quot;Format&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;Underline&quot;, &quot;Strike&quot;, &quot;SpellChecker&quot;, &quot;Undo&quot;, &quot;Redo&quot;], [&quot;Link&quot;, &quot;Unlink&quot;, &quot;Anchor&quot;], [&quot;Image&quot;, &quot;Flash&quot;, &quot;Table&quot;, &quot;HorizontalRule&quot;], [&quot;TextColor&quot;, &quot;BGColor&quot;], [&quot;Smiley&quot;, &quot;SpecialChar&quot;], [&quot;Source&quot;]], &quot;height&quot;: 300, &quot;width&quot;: 1000, &quot;skin&quot;: &quot;moono-lisa&quot;, &quot;filebrowserWindowHeight&quot;: 725, &quot;toolbar&quot;: &quot;full&quot;}"#}
+    {#                      data-external-plugin-resources="[]" data-id="id_text" data-type="ckeditortype" ></textarea>#}
+    {#        </div>#}
+    {#        </p>#}
+    {##}
+    {#        <script type="text/javascript" src="/static/ckeditor/ckeditor-init.js"#}
+    {#                data-ckeditor-basepath="/static/ckeditor/ckeditor/" id="ckeditor-init-script"></script>#}
+    {#        <script type="text/javascript" src="/static/ckeditor/ckeditor/ckeditor.js"></script>#}
+    {#        <br>#}
+    {#        <button style="color: #9C1A1C; font-weight: bold" type="submit" class="save btn btn-default">Save</button>#}
+    {#    </form>#}
+    {#    <br>#}
+    {##}
+    {#    <script>#}
+    {#        console.log(CKEDITOR.instances);#}
+    {##}
+    {#        CKEDITOR.instances.id_text_1.insertHtml('<p>TEST</p>')#}
+    {#    </script>#}
+
+    <form method="POST" class="post-form" style="text-align: center">{% csrf_token %}
+        {{ form.as_p }}
+        {{ form.media }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

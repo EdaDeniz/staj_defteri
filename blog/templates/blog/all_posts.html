@@ -1,0 +1,55 @@
+{% extends 'blog/../blog/base.html' %}
+{% block content %}
+    <title>Staj Defteri</title>
+    <body>
+    <br>
+    <h1 style="text-align: center; font-weight: bold; color: #6c1213; font-size: xx-large"> STAJ DEFTERİ</h1>
+    <br>
+
+    {% for post in posts %}
+        <div style="border: rgba(45,45,45,0.24) solid 1px; margin-left: 20px; margin-right: 20px; margin-bottom: 5px">
+
+            <p style="text-align: right; color: #9C1A1C; ">{{ post.published_date }}</p>
+            <br>
+            <p style="font-weight: bold; color: #2d8f6f">&emsp;Kullanıcı: {{ post.author.username }}</p>
+            <br>
+            <p style="font-weight: bold; color: #2d8f6f">&emsp;Başlık: {{ post.title }}</p>
+            <hr>
+            <br>
+            <div style="margin-left: 50px">
+                {{ post.text|safe }}
+            </div>
+            <br>
+             {% if request.user.is_authenticated %}
+                <a href="{% url "all_posts_detail" pk=post.pk %}" class="btn btn-primary btn-s" role="button">İncele</a>
+                 <br>
+                 <br>
+            {% endif %}
+        </div>
+
+
+    {% endfor %}
+    {% if posts.has_other_pages %}
+        <ul class="pagination" style="text-align: center">
+            {% if posts.has_previous %}
+                <li style="display: inline-block;"><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled" style="display: inline-block;"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                    <li class="active" style="display: inline-block;"><span>{{ i }} <span
+                            class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li style="display: inline-block;"><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if posts.has_next %}
+                <li style="display: inline-block;"><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled" style="display: inline-block;"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+    </body>
+{% endblock %}

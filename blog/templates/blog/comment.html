@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+
+<hr>
+<form method="POST" style="width: 50%; margin-left: 20px" id="comment_form">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-info" value="Yorum Ekle" style="margin-left: 20px">
+</form>
+

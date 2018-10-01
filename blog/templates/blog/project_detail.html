@@ -1,0 +1,86 @@
+{% extends 'blog/../blog/base.html' %}
+<body>
+{% block content %}
+    <br>
+    <div>
+        {% for project in projects %}
+
+            <br>
+            <div class="post">
+                <div class="well">
+                    <h2> İsim: {{ project.first_name }}
+                        <hr>
+                        <h2> Soyisim: {{ project.last_name }}</h2>
+                        <br>
+                        <h3> Email: {{ project.email }}</h3>
+                        <br>
+                        <h3>Tarih: {{ project.published_date }}</h3>
+                        <br>
+                        <hr>
+                        <br>
+                        <h2> Proje detayları:
+                            <br><br>
+
+                            {{ project.project_description|safe|linebreaksbr }}  </h2>
+                        <br>
+                        <h2> Proje notları: {{ project.project_notes|safe|linebreaksbr }} </h2>
+                        <br>
+                        <h3> Projede kullanılacak diller:
+
+                            {% for lang in project.select_lang %}
+
+                                {{ lang }}
+
+                            {% endfor %}
+                        </h3>
+
+
+                        {% if request.user.is_authenticated %}
+                                <a href="{% url "update_project" pk=project.pk %}" class="btn btn-default"
+                                   role="button">Güncelle</a>
+                                <a href="{% url "delete_project" pk=project.pk %}" class="btn btn-default"
+                                   role="button">Sil</a>
+                            {% endif %}
+
+                            <br>
+                </div>
+            </div>
+        {% endfor %}
+        <br>
+        <br>
+    </div>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+
+    <div>
+        {% if projects.has_other_pages %}
+            <ul class="pagination" style="text-align: center">
+                {% if projects.has_previous %}
+                    <li style="display: inline-block;"><a href="?page={{ projects.previous_page_number }}">&laquo;</a>
+                    </li>
+                {% else %}
+                    <li class="disabled" style="display: inline-block;"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in projects.paginator.page_range %}
+                    {% if projects.number == i %}
+                        <li class="active" style="display: inline-block;"><span>{{ i }} <span
+                                class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li style="display: inline-block;"><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if projects.has_next %}
+                    <li style="display: inline-block;"><a href="?page={{ projects.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled" style="display: inline-block;"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+    </body>
+
+{% endblock %}
+
+<br>
+<br>
