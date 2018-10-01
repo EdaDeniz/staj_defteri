@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Siteye Kaydol</title>
+</head>
+<body>
+{% block content %}
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <h2>Giriş Yap</h2>
+    <form style="text-align: center; color: #FFFFFF;" ; method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% if field.help_text %}
+                    <span class="tooltip" data-tooltip="{{ field.help_text }}">?</span>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                {% endfor %}
+            </p>
+        {% endfor %}
+        <section>
+            <button id="js-trigger-overlay" type="submit">Üye Ol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </button>
+        </section>
+    </form>
+    <p style="text-align: center"><a href="/login/"; style="color: #99ffff;">Zaten üye misiniz?</a></p>
+{% endblock %}
+</body>
+</html>

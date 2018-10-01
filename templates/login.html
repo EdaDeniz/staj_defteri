@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Giriş Yap</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+<h1>Giriş Yap</h1>
+<br>
+
+
+{% block content %}
+    <form style="text-align: center; color: #FFFFFF; font-weight: bold" ; method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <section>
+            <button id="js-trigger-overlay" type="submit">Giriş Yap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        </section>
+    </form>
+<p style="text-align: center; color: #FFFFFF;">Henüz kayıtlı değilseniz <a href="/signup/" style="color: #99ffff">buraya tıklayarak kayıt olun.</a></p>
+<p style="text-align: center; color: #FFFFFF;"><a href="/password_reset/" style="color: #99ffff">Şifrenizi mi unuttunuz?</a></p>
+
+{% endblock %}
+
+</body>
+</html>
